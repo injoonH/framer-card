@@ -23,7 +23,7 @@ $card-header-icon-size: 2.4rem;
   right: $card-margin;
 
   border-radius: $card-border-radius;
-  width: 400px;
+  width: clamp(200px, 30%, 400px);
 }
 
 .cardBottom {
@@ -32,7 +32,7 @@ $card-header-icon-size: 2.4rem;
   right: 0;
 
   border-radius: $card-border-radius $card-border-radius 0 0;
-  height: 500px;
+  height: clamp(300px, 40%, 500px);
 }
 
 .cardBottom::after {
