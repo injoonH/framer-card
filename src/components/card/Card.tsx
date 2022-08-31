@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 import classNames from "classnames";
 
-import styles from "@/components/Card/card.module.scss";
+import styles from "@/components/card/card.module.scss";
 
 interface CardProps {
   isActive: boolean;
