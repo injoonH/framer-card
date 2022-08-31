@@ -10,11 +10,11 @@ import styles from "@/components/Card/card.module.scss";
 
 interface CardProps {
   isActive: boolean;
-  toggleIsActive: () => void;
+  deactivate: () => void;
   children: React.ReactNode;
 }
 
-const Card: React.FC<CardProps> = ({ isActive, toggleIsActive, children }) => {
+const Card: React.FC<CardProps> = ({ isActive, deactivate, children }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
 
   const cardMotion = isMobile
@@ -41,7 +41,7 @@ const Card: React.FC<CardProps> = ({ isActive, toggleIsActive, children }) => {
     >
       <header className={styles.cardHeader}>
         <IoArrowBack />
-        <IoClose onClick={toggleIsActive} />
+        <IoClose onClick={deactivate} />
       </header>
       <main>{children}</main>
     </motion.div>
