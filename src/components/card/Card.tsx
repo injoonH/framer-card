@@ -23,22 +23,27 @@ interface Motion {
 
 const Card: React.FC<CardProps> = ({ isActive, deactivate, children }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
+  const [cardMotion, setCardMotion] = React.useState<Motion>();
 
-  const cardMotion: Motion = isMobile
-    ? {
-        initial: { y: "calc(100% + 4em)" },
-        animate: { y: 0 },
-        exit: { y: "calc(100% + 4em)" },
-        drag: "y",
-        dragConstraints: { top: 0 },
-      }
-    : {
-        initial: { x: "calc(100% + 4em)" },
-        animate: { x: 0 },
-        exit: { x: "calc(100% + 4em)" },
-        drag: "x",
-        dragConstraints: { left: 0 },
-      };
+  React.useEffect(() => {
+    setCardMotion(
+      isMobile
+        ? {
+            initial: { y: "calc(100% + 4em)" },
+            animate: { y: 0 },
+            exit: { y: "calc(100% + 4em)" },
+            drag: "y",
+            dragConstraints: { top: 0 },
+          }
+        : {
+            initial: { x: "calc(100% + 4em)" },
+            animate: { x: 0 },
+            exit: { x: "calc(100% + 4em)" },
+            drag: "x",
+            dragConstraints: { left: 0 },
+          }
+    );
+  }, [isMobile]);
 
   const onDragEnd = React.useCallback(
     (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo): void => {
