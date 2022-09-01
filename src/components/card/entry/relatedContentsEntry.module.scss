@@ -1,0 +1,40 @@
+@use "src/styles/colors";
+@use "src/styles/fonts";
+
+.entry {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  > svg {
+    width: 2rem;
+    height: 2rem;
+
+    color: colors.$achromatic-80;
+  }
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+  white-space: nowrap;
+
+  width: 100%;
+
+  > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.url {
+  font-size: 1.2rem;
+  color: colors.$achromatic-70;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: fonts.$fw-semibold;
+}
