@@ -1,8 +1,16 @@
 @use "src/styles/colors";
 @use "src/styles/fonts";
 
+.paragraph {
+  font-size: 1.6rem;
+  font-weight: fonts.$fw-regular;
+  color: colors.$achromatic-70;
+}
+
 .subtitle {
-  font-size: 2rem;
+  margin-bottom: 0.5em;
+
+  font-size: 1.8rem;
   font-weight: fonts.$fw-bold;
   color: colors.$achromatic-90;
 }
