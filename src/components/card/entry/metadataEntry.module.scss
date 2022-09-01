@@ -1,0 +1,23 @@
+@use "src/styles/colors";
+@use "src/styles/fonts";
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    font-weight: fonts.$fw-semibold;
+  }
+}
+
+.tag {
+  font-size: 1.4rem;
+  color: colors.$achromatic-70;
+}
+
+.value {
+  font-size: 1.6rem;
+  text-align: end;
+  color: colors.$achromatic-90;
+}
