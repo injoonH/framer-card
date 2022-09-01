@@ -45,15 +45,13 @@ const Card: React.FC<CardProps> = ({ isActive, deactivate, children }) => {
     );
   }, [isMobile]);
 
-  const onDragEnd = React.useCallback(
-    (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo): void => {
-      const [velocity, offset] = isMobile
-        ? [info.velocity.y, info.offset.y]
-        : [info.velocity.x, info.offset.x];
-      if (velocity > 30 || offset > 30) deactivate();
-    },
-    [isMobile]
-  );
+  const onDragEnd = (
+    _: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ): void => {
+    const offset = isMobile ? info.offset.y : info.offset.x;
+    if (offset > 70) deactivate();
+  };
 
   if (!isActive) return null;
 
@@ -71,7 +69,7 @@ const Card: React.FC<CardProps> = ({ isActive, deactivate, children }) => {
         <IoArrowBack />
         <IoClose onClick={deactivate} />
       </header>
-      <main>{children}</main>
+      <main className={styles.cardMain}>{children}</main>
     </motion.div>
   );
 };

@@ -1,0 +1,46 @@
+@use "src/styles/colors";
+@use "src/styles/fonts";
+
+.imgWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 0.5em;
+}
+
+.nodeId {
+  font-size: 1.6rem;
+  text-align: center;
+  color: colors.$achromatic-70;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: fonts.$fw-bold;
+  text-align: center;
+  color: colors.$primary;
+}
+
+.linkCountWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  color: colors.$achromatic-70;
+
+  > svg {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  > span {
+    font-size: 2rem;
+  }
+}
+
+.linkCountWrapper:hover {
+  color: colors.$achromatic-80;
+}

@@ -1,0 +1,35 @@
+{
+  "results": [
+    {
+      "id": 1,
+      "title": "Cookie Run",
+      "description": "Five Cookies, graced with Soul Jam of the purest kind. Wise and powerful, they rallied others to their cause. As kings and queens, they ruled the Cookies, bringing in a golden age of peace and prosperity.",
+      "imageSource": "https://play-lh.googleusercontent.com/5StEA6l0v_IwkcWsyItrqpz5DPhvEZqjS4njo1x8juDHhTPzRdOllSUXk8Ju_88G1g",
+      "linkedNodesCount": 32,
+      "contents": [
+        {
+          "type": "youtube",
+          "title": "Welcome to Cookie Run",
+          "url": "https://youtu.be/fUO4dB7pbAc"
+        },
+        {
+          "type": "instagram",
+          "title": "SPARCS KAIST",
+          "url": "https://www.instagram.com/sparcs.kaist"
+        }
+      ],
+      "author": {
+        "en": {
+          "name": "Injoon Hwang",
+          "department": "School of Computing",
+          "courseLevel": "Undergraduate program"
+        },
+        "ko": {
+          "name": "황인준",
+          "department": "전산학부",
+          "courseLevel": "학사과정"
+        }
+      }
+    }
+  ]
+}

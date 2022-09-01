@@ -1,45 +1,48 @@
 import React from "react";
 
 import Card from "@/components/card";
+import { CardViewState, NodeInfo } from "@/components/card/views";
 
 import { AnimatedChildren } from "@/layouts";
 
+import { NodeType } from "@/types";
+
 import { v4 as uuidv4 } from "uuid";
+
+import nodes from "@/data/nodes.json";
 
 export const Home: React.FC = () => {
   const [isCardActive, setIsCardActive] = React.useState<boolean>(false);
-  const [cardState, setCardState] = React.useState<number>(0);
+  const [cardViewState, setCardViewState] = React.useState<CardViewState>();
   const [cardKey, setCardKey] = React.useState<string>(uuidv4());
 
   const getCardView = React.useCallback(() => {
-    switch (cardState) {
-      case 1:
-        return <div>One</div>;
-      case 2:
-        return <div>Two</div>;
+    switch (cardViewState) {
+      case CardViewState.NodeInfo:
+        // TODO: GET node data from server
+        const nodeData = nodes.results[0] as NodeType;
+        return <NodeInfo {...nodeData} />;
       default:
         return <div>Default</div>;
     }
-  }, [cardState]);
+  }, [cardViewState]);
+
+  const buttonStyle = {
+    margin: "1em",
+    padding: "1em",
+  };
 
   return (
     <>
-      {Array(2)
-        .fill(null)
-        .map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => {
-              setIsCardActive(true);
-              setCardState(idx + 1);
-            }}
-            style={{
-              padding: "1em",
-            }}
-          >
-            Open {idx + 1}
-          </button>
-        ))}
+      <button
+        onClick={() => {
+          setIsCardActive(true);
+          setCardViewState(CardViewState.NodeInfo);
+        }}
+        style={buttonStyle}
+      >
+        NodeInfo
+      </button>
       <AnimatedChildren>
         <Card
           key={cardKey}
