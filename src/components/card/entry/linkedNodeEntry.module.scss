@@ -12,10 +12,10 @@
   cursor: pointer;
 
   > svg {
-    width: 2rem;
-    height: 2rem;
+    width: 2.4rem;
+    height: 2.4rem;
 
-    color: colors.$achromatic-80;
+    color: colors.$achromatic-40;
   }
 }
 
@@ -51,6 +51,11 @@
       gap: 0.2em;
 
       color: colors.$achromatic-70;
+
+      > svg {
+        width: 1.2em;
+        height: 1.2em;
+      }
     }
   }
 }

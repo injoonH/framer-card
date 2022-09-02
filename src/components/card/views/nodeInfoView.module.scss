@@ -28,19 +28,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.1em;
+  gap: 0.2em;
 
   cursor: pointer;
 
+  font-size: 2rem;
   color: colors.$achromatic-70;
 
   > svg {
-    width: 2.4rem;
-    height: 2.4rem;
-  }
-
-  > span {
-    font-size: 2rem;
+    width: 1.2em;
+    height: 1.2em;
   }
 }
 
