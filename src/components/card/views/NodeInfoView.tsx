@@ -2,6 +2,7 @@ import React from "react";
 import { IoGitCommitOutline } from "react-icons/io5";
 
 import { MetadataEntry, RelatedContentsEntry } from "@/components/card/entry";
+import { CardViewState } from "@/components/card/views";
 import { Divider, RoundImg } from "@/components/atom";
 import { RectButton } from "@/components/button";
 import Container from "@/components/container";
@@ -9,16 +10,21 @@ import Text from "@/components/text";
 
 import { NodeType } from "@/types";
 
-import styles from "./nodeInfo.module.scss";
+import styles from "./nodeInfoView.module.scss";
 
-export const NodeInfo: React.FC<NodeType> = ({
+export const NodeInfoView: React.FC<
+  NodeType & {
+    setCardViewState: React.Dispatch<React.SetStateAction<CardViewState>>;
+  }
+> = ({
   id,
   title,
   description,
   imageSource,
-  linkedNodesCount,
   contents,
+  linkedNodesCount,
   author,
+  setCardViewState,
 }) => {
   return (
     <>
@@ -32,7 +38,7 @@ export const NodeInfo: React.FC<NodeType> = ({
           className={styles.linkCountWrapper}
           title="the number of linked ideas"
           onClick={() => {
-            // TODO: Navigate
+            setCardViewState(CardViewState.LinkedNodes);
           }}
         >
           <IoGitCommitOutline />

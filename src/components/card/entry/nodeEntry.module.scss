@@ -1,24 +1,33 @@
 @use "src/styles/colors";
 @use "src/styles/fonts";
 
-.imgWrapper {
+.entry {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  gap: 1em;
+}
 
-  margin-bottom: 0.5em;
+.detailsContainer {
+  overflow: hidden;
+
+  width: 100%;
+
+  > div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 .nodeId {
   font-size: 1.6rem;
-  text-align: center;
   color: colors.$achromatic-70;
 }
 
 .title {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: fonts.$fw-bold;
-  text-align: center;
   color: colors.$primary;
 }
 
@@ -26,8 +35,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  cursor: pointer;
+  gap: 0.3em;
 
   color: colors.$achromatic-70;
 
@@ -39,8 +47,4 @@
   > span {
     font-size: 2rem;
   }
-}
-
-.linkCountWrapper:hover {
-  color: colors.$achromatic-80;
 }

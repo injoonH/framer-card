@@ -1,0 +1,71 @@
+@use "src/styles/colors";
+@use "src/styles/fonts";
+
+.entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 0.5rem 0.2rem;
+
+  cursor: pointer;
+
+  > svg {
+    width: 2rem;
+    height: 2rem;
+
+    color: colors.$achromatic-80;
+  }
+}
+
+.entry:hover {
+  background-color: colors.$achromatic-10;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  width: 100%;
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 0.1em;
+
+    .title {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      width: 100%;
+      font-weight: fonts.$fw-semibold;
+    }
+
+    .linkCountWrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.2em;
+
+      color: colors.$achromatic-70;
+    }
+  }
+}
+
+.description {
+  display: -webkit-box;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  width: 100%;
+
+  font-size: 1.2rem;
+  color: colors.$achromatic-70;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
