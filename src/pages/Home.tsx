@@ -63,6 +63,7 @@ export const Home: React.FC = () => {
         .fill(null)
         .map((_, idx) => (
           <button
+            key={idx}
             style={buttonStyle}
             onClick={() => {
               setIsCardActive(true);

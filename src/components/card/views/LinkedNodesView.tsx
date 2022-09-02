@@ -36,6 +36,7 @@ export const LinkedNodesView: React.FC<
       <Container.stack>
         {linkedNodes.map((entry) => (
           <LinkedNodeEntry
+            key={entry.id}
             title={entry.title}
             description={entry.description}
             imageSource={entry.imageSource}
