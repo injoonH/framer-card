@@ -59,7 +59,7 @@ export const Home: React.FC = () => {
 
   return (
     <>
-      {Array(2)
+      {Array(3)
         .fill(null)
         .map((_, idx) => (
           <button

@@ -5,7 +5,7 @@
       "title": "Cookie Run",
       "description": "Five Cookies, graced with Soul Jam of the purest kind. Wise and powerful, they rallied others to their cause. As kings and queens, they ruled the Cookies, bringing in a golden age of peace and prosperity.",
       "imageSource": "https://play-lh.googleusercontent.com/5StEA6l0v_IwkcWsyItrqpz5DPhvEZqjS4njo1x8juDHhTPzRdOllSUXk8Ju_88G1g",
-      "linkedNodesCount": 1,
+      "linkedNodesCount": 2,
       "contents": [
         {
           "type": "youtube",
@@ -36,7 +36,7 @@
       "title": "Battlegrounds",
       "description": "PUBG is a player versus player shooter game in which up to one hundred players fight in a battle royale, a type of large-scale last man standing deathmatch where players fight to remain the last alive. Players can choose to enter the match solo, duo, or with a small team of up to four people. The last person or team alive wins the match.",
       "imageSource": "https://charlieintel.com/wp-content/uploads/2021/01/53f7d969762523414600a6549e36202a.jpg",
-      "linkedNodesCount": 1,
+      "linkedNodesCount": 2,
       "contents": [
         {
           "type": "default",
@@ -47,6 +47,32 @@
           "type": "youtube",
           "title": "Season 4 Gameplay Trailer",
           "url": "https://youtu.be/_LTiEXMc5J0"
+        }
+      ],
+      "author": {
+        "en": {
+          "name": "Injoon Hwang",
+          "department": "School of Computing",
+          "courseLevel": "Undergraduate program"
+        },
+        "ko": {
+          "name": "황인준",
+          "department": "전산학부",
+          "courseLevel": "학사과정"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Neobjuggi",
+      "description": "A KAIST character describing quirky and funny KAISTians was created in 2014 and is widely beloved by the KAIST community.",
+      "imageSource": "https://www.kaist.ac.kr/site/kr/img/content/sub01/ui_img04.jpg",
+      "linkedNodesCount": 2,
+      "contents": [
+        {
+          "type": "instagram",
+          "title": "Nupjuki",
+          "url": "https://www.instagram.com/nupjuki/"
         }
       ],
       "author": {
