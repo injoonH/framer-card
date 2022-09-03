@@ -1,18 +1,23 @@
 @use "src/styles/colors";
 
-.iconWrapper {
+.icon {
   display: flex;
   justify-content: center;
   align-items: center;
 
-  border: 2px solid colors.$achromatic-20;
   border-radius: 50%;
-  padding: 0.8rem;
+  padding: 0.8em;
 
-  svg {
-    width: 2.4rem;
-    height: 2.4rem;
+  > svg {
+    width: 2.4em;
+    height: 2.4em;
+  }
+}
 
+.outlinedIcon {
+  border: 2px solid colors.$achromatic-20;
+
+  > svg {
     color: colors.$achromatic-80;
   }
 }

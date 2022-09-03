@@ -1,0 +1,20 @@
+@use "src/styles/colors";
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2em;
+
+  font-size: inherit;
+  color: colors.$achromatic-70;
+
+  > svg {
+    width: 1.2em;
+    height: 1.2em;
+  }
+}
+
+.wrapperClickable:hover {
+  color: colors.$achromatic-80;
+}

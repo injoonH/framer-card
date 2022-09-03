@@ -51,7 +51,9 @@ export const RelatedContentsEntry: React.FC<RelatedContentsEntryProps> = ({
 
   return (
     <a className={styles.entry} href={url} target="_blank">
-      <RoundIcon icon={icon} />
+      <div className={styles.iconWrapper}>
+        <RoundIcon.outlined icon={icon} />
+      </div>
       <div className={styles.detailsContainer}>
         <span className={styles.url}>{url}</span>
         <span className={styles.title}>{title}</span>

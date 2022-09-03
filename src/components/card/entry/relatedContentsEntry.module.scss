@@ -6,12 +6,22 @@
   align-items: center;
   gap: 1rem;
 
-  > svg {
-    width: 2rem;
-    height: 2rem;
+  padding: 0.2em 0.2em;
 
-    color: colors.$achromatic-80;
+  > svg {
+    width: 2.4rem;
+    height: 2.4rem;
+
+    color: colors.$achromatic-40;
   }
+}
+
+.entry:hover {
+  background-color: colors.$achromatic-10;
+}
+
+.iconWrapper {
+  font-size: 1rem;
 }
 
 .detailsContainer {

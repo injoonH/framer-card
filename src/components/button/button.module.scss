@@ -1,0 +1,70 @@
+@use "src/styles/colors";
+@use "src/styles/fonts";
+
+$margin-top: 2rem;
+$clr-like: #f58297;
+
+.button {
+  margin-top: $margin-top;
+  border: 2px solid transparent;
+  border-radius: 11px;
+  width: 100%;
+  padding: 0.6em;
+
+  cursor: pointer;
+
+  font-size: 1.8rem;
+  font-weight: fonts.$fw-semibold;
+}
+
+.rect {
+  background-color: colors.$primary;
+
+  color: colors.$achromatic-0;
+}
+
+.like {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2em;
+
+  border-color: colors.$achromatic-40;
+
+  background-color: colors.$achromatic-0;
+
+  color: colors.$achromatic-40;
+
+  > svg {
+    fill: colors.$achromatic-40;
+  }
+}
+
+.likeActivated {
+  border-color: transparent;
+
+  background-color: $clr-like;
+
+  color: colors.$achromatic-0;
+
+  > svg {
+    fill: colors.$achromatic-0;
+  }
+}
+
+.learnMore {
+  border: 1px solid colors.$achromatic-40;
+  border-radius: 5px;
+  padding: 0.3em 1.4em;
+
+  cursor: pointer;
+
+  background: none;
+
+  font-size: 1.2rem;
+  color: colors.$secondary;
+}
+
+.learnMore:hover {
+  background-color: colors.$achromatic-10;
+}

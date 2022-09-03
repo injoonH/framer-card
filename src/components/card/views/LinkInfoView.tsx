@@ -1,49 +1,62 @@
 import React from "react";
+import { IoLink } from "react-icons/io5";
 
-import { LinkCount } from "@/components/card/elements";
-import { MetadataEntry, RelatedContentsEntry } from "@/components/card/entry";
 import { CardViewState } from "@/components/card/views";
 
-import { Divider, RoundImg } from "@/components/atom";
+import { NodeProfile } from "@/components/card/elements";
+import { MetadataEntry, RelatedContentsEntry } from "@/components/card/entry";
+
+import { Divider, RoundIcon } from "@/components/atom";
 import Button from "@/components/button";
 import Container from "@/components/container";
 import Text from "@/components/text";
 
-import { NodeType } from "@/types";
+import { LinkType } from "@/types";
 
-import styles from "./nodeInfoView.module.scss";
+import styles from "./linkInfo.module.scss";
 
-export const NodeInfoView: React.FC<
-  NodeType & {
+export const LinkInfoView: React.FC<
+  LinkType & {
+    setCurrentId: React.Dispatch<React.SetStateAction<number>>;
     setCardViewState: React.Dispatch<React.SetStateAction<CardViewState>>;
   }
 > = ({
-  id,
-  title,
   description,
-  imageSource,
+  src,
+  dest,
   contents,
-  linkedNodesCount,
+  likesCount,
+  isLiked,
   author,
+  setCurrentId,
   setCardViewState,
 }) => {
   return (
     <>
-      <div className={styles.imgWrapper}>
-        <RoundImg src={imageSource} size="20rem" />
-      </div>
-      <div className={styles.nodeId}>Idea {id}</div>
-      <div className={styles.title}>{title}</div>
-      <Container.center>
-        <div className={styles.linkCountWrapper}>
-          <LinkCount
-            count={linkedNodesCount}
-            onClickHandler={() => {
-              setCardViewState(CardViewState.LinkedNodes);
-            }}
+      <div className={styles.profilesContainer}>
+        <NodeProfile
+          {...src}
+          navigateToNodeInfo={() => {
+            setCurrentId(src.id);
+            setCardViewState(CardViewState.NodeInfo);
+          }}
+        />
+        <NodeProfile
+          {...dest}
+          navigateToNodeInfo={() => {
+            setCurrentId(dest.id);
+            setCardViewState(CardViewState.NodeInfo);
+          }}
+        />
+        <div className={styles.imageLinkLine}></div>
+        <div className={styles.imageLinkIcon}>
+          <RoundIcon.filled
+            icon={<IoLink />}
+            backgroundColor="#71bae5"
+            color="#ffffff"
           />
         </div>
-      </Container.center>
+      </div>
 
       <Divider />
 
@@ -55,7 +68,7 @@ export const NodeInfoView: React.FC<
       {contents.length !== 0 && (
         <>
           <Text.subtitle>Related Contents</Text.subtitle>
-          <Container.stack>
+          <Container.stack gap="0.5em">
             {contents.map((entry, idx) => (
               <RelatedContentsEntry
                 key={idx}
@@ -72,19 +85,19 @@ export const NodeInfoView: React.FC<
 
       <Text.subtitle>Author</Text.subtitle>
       <Container.stack gap="0.1em">
-        {/* // TODO: Use i18n */}
+        {/* TODO: Use i18n */}
         <MetadataEntry tag="Name" value={author.en.name} />
         <MetadataEntry tag="Department" value={author.en.department} />
         <MetadataEntry tag="Course Level" value={author.en.courseLevel} />
       </Container.stack>
 
-      <Button.rect
+      <Button.like
+        likeCount={likesCount}
+        isLiked={isLiked}
         onClickHandler={() => {
-          // TODO: Navigate
+          // TODO: Fetch likes
         }}
-      >
-        Connect an Idea
-      </Button.rect>
+      />
     </>
   );
 };

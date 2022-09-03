@@ -1,0 +1,41 @@
+@use "src/styles/colors";
+@use "src/styles/fonts";
+
+.container {
+  z-index: 1;
+
+  overflow: hidden;
+
+  width: 100%;
+}
+
+.imageWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.nodeId {
+  margin-top: 0.4em;
+  margin-bottom: 0.2em;
+
+  font-size: 1.4rem;
+  text-align: center;
+  color: colors.$achromatic-70;
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  font-size: 1.7rem;
+  font-weight: fonts.$fw-bold;
+  text-align: center;
+  color: colors.$primary;
+}
+
+.linkCountWrapper {
+  margin: 0.2em 0;
+
+  font-size: 1.7rem;
+}

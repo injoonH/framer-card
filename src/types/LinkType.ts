@@ -1,13 +1,14 @@
 import { RelatedContentsEntryProps } from "@/components/card/entry";
 
-import { AuthorType } from "@/types";
+import { AuthorType, NodeProfileType } from "@/types";
 
-export type NodeType = {
+export type LinkType = {
   id: number;
-  title: string;
   description: string;
-  imageSource: string;
-  linkedNodesCount: number;
+  src: NodeProfileType;
+  dest: NodeProfileType;
   contents: RelatedContentsEntryProps[];
+  likesCount: number;
+  isLiked: boolean;
   author: AuthorType;
 };

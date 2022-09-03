@@ -25,22 +25,5 @@
 }
 
 .linkCountWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.2em;
-
-  cursor: pointer;
-
   font-size: 2rem;
-  color: colors.$achromatic-70;
-
-  > svg {
-    width: 1.2em;
-    height: 1.2em;
-  }
-}
-
-.linkCountWrapper:hover {
-  color: colors.$achromatic-80;
 }

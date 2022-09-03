@@ -1,0 +1,97 @@
+{
+  "results": [
+    {
+      "id": 1,
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit iusto recusandae obcaecati, laudantium iure ex unde necessitatibus nobis dignissimos, nulla dolor voluptatem aperiam corrupti nesciunt iste nemo ullam amet? Eveniet.",
+      "src": {
+        "id": 1,
+        "title": "Cookie Run",
+        "imageSource": "https://play-lh.googleusercontent.com/5StEA6l0v_IwkcWsyItrqpz5DPhvEZqjS4njo1x8juDHhTPzRdOllSUXk8Ju_88G1g",
+        "linkedNodesCount": 2
+      },
+      "dest": {
+        "id": 2,
+        "title": "Battlegrounds",
+        "imageSource": "https://charlieintel.com/wp-content/uploads/2021/01/53f7d969762523414600a6549e36202a.jpg",
+        "linkedNodesCount": 2
+      },
+      "contents": [],
+      "likesCount": 1,
+      "isLiked": true,
+      "author": {
+        "en": {
+          "name": "Injoon Hwang",
+          "department": "School of Computing",
+          "courseLevel": "Undergraduate program"
+        },
+        "ko": {
+          "name": "황인준",
+          "department": "전산학부",
+          "courseLevel": "학사과정"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit iusto recusandae obcaecati, laudantium iure ex unde necessitatibus nobis dignissimos, nulla dolor voluptatem aperiam corrupti nesciunt iste nemo ullam amet? Eveniet.",
+      "src": {
+        "id": 2,
+        "title": "Battlegrounds",
+        "imageSource": "https://charlieintel.com/wp-content/uploads/2021/01/53f7d969762523414600a6549e36202a.jpg",
+        "linkedNodesCount": 2
+      },
+      "dest": {
+        "id": 3,
+        "title": "Neobjuggi",
+        "imageSource": "https://www.kaist.ac.kr/site/kr/img/content/sub01/ui_img04.jpg",
+        "linkedNodesCount": 2
+      },
+      "contents": [],
+      "likesCount": 0,
+      "isLiked": false,
+      "author": {
+        "en": {
+          "name": "Injoon Hwang",
+          "department": "School of Computing",
+          "courseLevel": "Undergraduate program"
+        },
+        "ko": {
+          "name": "황인준",
+          "department": "전산학부",
+          "courseLevel": "학사과정"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit iusto recusandae obcaecati, laudantium iure ex unde necessitatibus nobis dignissimos, nulla dolor voluptatem aperiam corrupti nesciunt iste nemo ullam amet? Eveniet.",
+      "src": {
+        "id": 3,
+        "title": "Neobjuggi",
+        "imageSource": "https://www.kaist.ac.kr/site/kr/img/content/sub01/ui_img04.jpg",
+        "linkedNodesCount": 2
+      },
+      "dest": {
+        "id": 1,
+        "title": "Cookie Run",
+        "imageSource": "https://play-lh.googleusercontent.com/5StEA6l0v_IwkcWsyItrqpz5DPhvEZqjS4njo1x8juDHhTPzRdOllSUXk8Ju_88G1g",
+        "linkedNodesCount": 2
+      },
+      "contents": [],
+      "likesCount": 1,
+      "isLiked": true,
+      "author": {
+        "en": {
+          "name": "Injoon Hwang",
+          "department": "School of Computing",
+          "courseLevel": "Undergraduate program"
+        },
+        "ko": {
+          "name": "황인준",
+          "department": "전산학부",
+          "courseLevel": "학사과정"
+        }
+      }
+    }
+  ]
+}

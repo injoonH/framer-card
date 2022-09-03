@@ -1,5 +1,7 @@
 import React from "react";
-import { IoChevronForward, IoGitCommitOutline } from "react-icons/io5";
+import { IoChevronForward } from "react-icons/io5";
+
+import { LinkCount } from "@/components/card/elements";
 
 import { RoundImg } from "@/components/atom";
 
@@ -26,10 +28,7 @@ export const LinkedNodeEntry: React.FC<LinkedNodeEntryProps> = ({
       <div className={styles.detailsContainer}>
         <div>
           <span className={styles.title}>{title}</span>
-          <div className={styles.linkCountWrapper}>
-            <IoGitCommitOutline />
-            <span>{linkedNodesCount}</span>
-          </div>
+          <LinkCount count={linkedNodesCount} />
         </div>
         <p className={styles.description}>{description}</p>
       </div>

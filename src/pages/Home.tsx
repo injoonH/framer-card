@@ -4,17 +4,19 @@ import Card from "@/components/card";
 import {
   CardViewState,
   LinkedNodesView,
+  LinkInfoView,
   NodeInfoView,
 } from "@/components/card/views";
 
 import { AnimatedChildren } from "@/layouts";
 
-import { LinkedNodesType, NodeType } from "@/types";
+import { LinkedNodesType, LinkType, NodeType } from "@/types";
 
 import { v4 as uuidv4 } from "uuid";
 
-import nodes from "@/data/nodes.json";
+import links from "@/data/links.json";
 import linkedNodes from "@/data/linkedNodes.json";
+import nodes from "@/data/nodes.json";
 
 export const Home: React.FC = () => {
   const [isCardActive, setIsCardActive] = React.useState<boolean>(false);
@@ -48,6 +50,18 @@ export const Home: React.FC = () => {
               setCardViewState={setCardViewState}
             />
           );
+      case CardViewState.LinkInfo:
+        // TODO: Get /link/:id
+        const allLinkData = links.results as LinkType[];
+        const linkData = allLinkData.find((link) => link.id === currentId);
+        if (linkData)
+          return (
+            <LinkInfoView
+              {...linkData}
+              setCurrentId={setCurrentId}
+              setCardViewState={setCardViewState}
+            />
+          );
     }
     return <div>Default</div>;
   }, [cardViewState, currentId]);
@@ -62,17 +76,30 @@ export const Home: React.FC = () => {
       {Array(3)
         .fill(null)
         .map((_, idx) => (
-          <button
-            key={idx}
-            style={buttonStyle}
-            onClick={() => {
-              setIsCardActive(true);
-              setCardViewState(CardViewState.NodeInfo);
-              setCurrentId(idx + 1);
-            }}
-          >
-            Node {idx + 1}
-          </button>
+          <div>
+            <button
+              key={idx}
+              style={buttonStyle}
+              onClick={() => {
+                setIsCardActive(true);
+                setCardViewState(CardViewState.NodeInfo);
+                setCurrentId(idx + 1);
+              }}
+            >
+              Node {idx + 1}
+            </button>
+            <button
+              key={idx}
+              style={buttonStyle}
+              onClick={() => {
+                setIsCardActive(true);
+                setCardViewState(CardViewState.LinkInfo);
+                setCurrentId(idx + 1);
+              }}
+            >
+              Edge {idx + 1} - {((idx + 1) % 3) + 1}
+            </button>
+          </div>
         ))}
       <AnimatedChildren>
         <Card

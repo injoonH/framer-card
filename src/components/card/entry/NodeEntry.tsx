@@ -1,6 +1,8 @@
 import React from "react";
 import { IoGitCommitOutline } from "react-icons/io5";
 
+import { LinkCount } from "@/components/card/elements";
+
 import { RoundImg } from "@/components/atom";
 
 import styles from "./nodeEntry.module.scss";
@@ -26,8 +28,7 @@ export const NodeEntry: React.FC<NodeEntryProps> = ({
         <div className={styles.title}>{title}</div>
       </div>
       <div className={styles.linkCountWrapper}>
-        <IoGitCommitOutline />
-        <span>{linkedNodesCount}</span>
+        <LinkCount count={linkedNodesCount} />
       </div>
     </div>
   );
