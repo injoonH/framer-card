@@ -1,0 +1,29 @@
+@use "src/styles/colors";
+@use "src/styles/fonts";
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5em;
+
+  border-radius: 5px;
+  padding: 0.5em;
+
+  background-color: colors.$achromatic-15;
+
+  font-size: 1.8rem;
+
+  > svg {
+    width: 1.25em;
+    height: 1.25em;
+  }
+
+  > input {
+    outline: none;
+    border: none;
+    width: 100%;
+
+    background: none;
+  }
+}
