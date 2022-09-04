@@ -30,7 +30,7 @@ export const NodeInfoView: React.FC<
   return (
     <>
       <div className={styles.imgWrapper}>
-        <RoundImg src={imageSource} size="20rem" />
+        <RoundImg src={imageSource} />
       </div>
       <div className={styles.nodeId}>Idea {id}</div>
       <div className={styles.title}>{title}</div>

@@ -34,7 +34,9 @@ export const LinkedNodeEntry: React.FC<LinkedNodeEntryProps> = ({
       })}
       onClick={onClickListener}
     >
-      <RoundImg src={imageSource} size="5rem" />
+      <div className={styles.imageWrapper}>
+        <RoundImg src={imageSource} />
+      </div>
       <div className={styles.detailsContainer}>
         <div>
           <span className={styles.title}>{title}</span>

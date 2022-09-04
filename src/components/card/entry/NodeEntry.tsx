@@ -22,7 +22,9 @@ export const NodeEntry: React.FC<NodeEntryProps> = ({
 }) => {
   return (
     <div className={styles.entry}>
-      <RoundImg src={imageSource} size="6rem" />
+      <div className={styles.imageWrapper}>
+        <RoundImg src={imageSource} />
+      </div>
       <div className={styles.detailsContainer}>
         <div className={styles.nodeId}>Idea {id}</div>
         <div className={styles.title}>{title}</div>

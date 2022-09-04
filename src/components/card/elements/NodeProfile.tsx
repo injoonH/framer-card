@@ -18,7 +18,7 @@ export const NodeProfile: React.FC<
   return (
     <div className={styles.container}>
       <div className={styles.imageWrapper}>
-        <RoundImg src={imageSource} size="10rem" />
+        <RoundImg src={imageSource} />
       </div>
       <div className={styles.nodeId}>Idea {id}</div>
       <div className={styles.title}>{title}</div>

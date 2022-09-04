@@ -1,8 +1,13 @@
 @use "src/styles/colors";
 
 .image {
-  border-radius: 50%;
   object-fit: cover;
 
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+
   background-color: colors.$achromatic-20;
+
+  font-size: inherit;
 }
