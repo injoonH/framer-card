@@ -1,0 +1,30 @@
+@use "src/styles/colors";
+@use "src/styles/fonts";
+
+.container {
+  border-radius: 5px;
+  padding: 0.5em;
+
+  background-color: colors.$achromatic-13;
+
+  > textarea {
+    resize: none;
+
+    border: none;
+    outline: none;
+    width: 100%;
+    min-height: 6em;
+
+    background: none;
+
+    &::placeholder {
+      color: colors.$achromatic-70;
+    }
+  }
+
+  > div {
+    font-size: 1.4rem;
+    text-align: right;
+    color: colors.$achromatic-70;
+  }
+}
