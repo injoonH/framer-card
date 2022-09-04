@@ -68,3 +68,12 @@ $clr-like: #f58297;
 .learnMore:hover {
   background-color: colors.$achromatic-10;
 }
+
+.condition {
+  border-color: colors.$achromatic-40;
+
+  background-color: colors.$achromatic-0;
+  cursor: auto;
+
+  color: colors.$achromatic-40;
+}

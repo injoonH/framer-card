@@ -52,8 +52,28 @@ const LearnMoreButton: React.FC<{ onClickHandler: () => void }> = ({
   );
 };
 
+const ConditionButton: React.FC<{
+  children: React.ReactNode;
+  condition: boolean;
+  onClickHandler: () => void;
+}> = ({ children, condition, onClickHandler }) => {
+  return (
+    <button
+      className={classNames({
+        [styles.button]: true,
+        [condition ? styles.rect : styles.condition]: true,
+      })}
+      onClick={onClickHandler}
+      disabled={condition}
+    >
+      {children}
+    </button>
+  );
+};
+
 export default {
   rect: RectButton,
   like: LikeButton,
   learnMore: LearnMoreButton,
+  condition: ConditionButton,
 };

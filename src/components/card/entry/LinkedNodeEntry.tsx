@@ -5,6 +5,8 @@ import { LinkCount } from "@/components/card/elements";
 
 import { RoundImg } from "@/components/atom";
 
+import classNames from "classnames";
+
 import styles from "./linkedNodeEntry.module.scss";
 
 interface LinkedNodeEntryProps {
@@ -13,6 +15,7 @@ interface LinkedNodeEntryProps {
   imageSource: string;
   linkedNodesCount: number;
   onClickListener: () => void;
+  isSelected?: boolean;
 }
 
 export const LinkedNodeEntry: React.FC<LinkedNodeEntryProps> = ({
@@ -21,9 +24,16 @@ export const LinkedNodeEntry: React.FC<LinkedNodeEntryProps> = ({
   imageSource,
   linkedNodesCount,
   onClickListener,
+  isSelected = false,
 }) => {
   return (
-    <div className={styles.entry} onClick={onClickListener}>
+    <div
+      className={classNames({
+        [styles.entry]: true,
+        [styles.entrySelected]: isSelected,
+      })}
+      onClick={onClickListener}
+    >
       <RoundImg src={imageSource} size="5rem" />
       <div className={styles.detailsContainer}>
         <div>

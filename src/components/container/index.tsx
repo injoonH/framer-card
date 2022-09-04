@@ -19,9 +19,10 @@ const Center: React.FC<{
 const Stack: React.FC<{
   children: React.ReactNode;
   gap?: string;
-}> = ({ children, gap }) => {
+  style?: React.CSSProperties;
+}> = ({ children, gap, style }) => {
   return (
-    <div className={styles.stack} style={{ gap }}>
+    <div className={styles.stack} style={{ gap, ...style }}>
       {children}
     </div>
   );

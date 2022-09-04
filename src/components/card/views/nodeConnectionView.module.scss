@@ -1,0 +1,38 @@
+@use "src/styles/colors";
+@use "src/styles/fonts";
+
+.searchBarWrapper {
+  margin-top: 2rem;
+}
+
+.createButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.1em;
+
+  margin: 1rem 0;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  padding: 1.1em 0.5em;
+
+  background-color: colors.$achromatic-10;
+  cursor: pointer;
+
+  color: colors.$achromatic-70;
+
+  > svg {
+    width: 1.8em;
+    height: 1.8em;
+  }
+
+  > span {
+    font-weight: fonts.$fw-semibold;
+  }
+}
+
+.createButton:hover {
+  background-color: colors.$achromatic-13;
+}

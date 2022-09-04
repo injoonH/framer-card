@@ -1,9 +1,11 @@
 export * from "./LinkedNodesView";
 export * from "./LinkInfoView";
+export * from "./NodeConnectionView";
 export * from "./NodeInfoView";
 
 export enum CardViewState {
-  LinkInfo,
   LinkedNodes,
+  LinkInfo,
+  NodeConnection,
   NodeInfo,
 }

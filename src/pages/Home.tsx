@@ -5,6 +5,7 @@ import {
   CardViewState,
   LinkedNodesView,
   LinkInfoView,
+  NodeConnectionView,
   NodeInfoView,
 } from "@/components/card/views";
 
@@ -32,17 +33,19 @@ export const Home: React.FC = () => {
         // TODO: GET /node/:id
         const allNodeData = nodes.results as NodeType[];
         const nodeData = allNodeData.find((node) => node.id === currentId);
-        if (nodeData)
-          return (
-            <NodeInfoView {...nodeData} setCardViewState={setCardViewState} />
-          );
+        if (nodeData === undefined) break;
+        return (
+          <NodeInfoView {...nodeData} setCardViewState={setCardViewState} />
+        );
       case CardViewState.LinkedNodes:
+      case CardViewState.NodeConnection:
         // TODO: GET /linkedNodes/:id
         const allLinkedNodesData = linkedNodes.results as LinkedNodesType[];
         const linkedNodesData = allLinkedNodesData.find(
           (node) => node.id === currentId
         );
-        if (linkedNodesData)
+        if (linkedNodesData === undefined) break;
+        if (cardViewState === CardViewState.LinkedNodes)
           return (
             <LinkedNodesView
               {...linkedNodesData}
@@ -50,18 +53,19 @@ export const Home: React.FC = () => {
               setCardViewState={setCardViewState}
             />
           );
+        return <NodeConnectionView {...linkedNodesData} />;
       case CardViewState.LinkInfo:
         // TODO: Get /link/:id
         const allLinkData = links.results as LinkType[];
         const linkData = allLinkData.find((link) => link.id === currentId);
-        if (linkData)
-          return (
-            <LinkInfoView
-              {...linkData}
-              setCurrentId={setCurrentId}
-              setCardViewState={setCardViewState}
-            />
-          );
+        if (linkData === undefined) break;
+        return (
+          <LinkInfoView
+            {...linkData}
+            setCurrentId={setCurrentId}
+            setCardViewState={setCardViewState}
+          />
+        );
     }
     return <div>Default</div>;
   }, [cardViewState, currentId]);
@@ -76,9 +80,8 @@ export const Home: React.FC = () => {
       {Array(3)
         .fill(null)
         .map((_, idx) => (
-          <div>
+          <div key={idx}>
             <button
-              key={idx}
               style={buttonStyle}
               onClick={() => {
                 setIsCardActive(true);
@@ -89,7 +92,6 @@ export const Home: React.FC = () => {
               Node {idx + 1}
             </button>
             <button
-              key={idx}
               style={buttonStyle}
               onClick={() => {
                 setIsCardActive(true);

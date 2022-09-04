@@ -54,6 +54,7 @@ $card-header-icon-size: 2.4rem;
 .cardHeader {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   padding: $card-header-padding;
 

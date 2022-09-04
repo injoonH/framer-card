@@ -2,6 +2,7 @@ import React from "react";
 
 import { LinkedNodeEntry, NodeEntry } from "@/components/card/entry";
 import { CardViewState } from "@/components/card/views";
+
 import { Divider } from "@/components/atom";
 import Container from "@/components/container";
 import Text from "@/components/text";

@@ -80,7 +80,7 @@ export const NodeInfoView: React.FC<
 
       <Button.rect
         onClickHandler={() => {
-          // TODO: Navigate
+          setCardViewState(CardViewState.NodeConnection);
         }}
       >
         Connect an Idea

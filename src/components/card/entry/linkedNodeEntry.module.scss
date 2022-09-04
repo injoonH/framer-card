@@ -23,6 +23,10 @@
   background-color: colors.$achromatic-10;
 }
 
+.entrySelected {
+  background-color: colors.$achromatic-13;
+}
+
 .detailsContainer {
   display: flex;
   flex-direction: column;

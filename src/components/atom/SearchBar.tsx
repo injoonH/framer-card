@@ -18,7 +18,9 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 }) => {
   return (
     <div className={styles.container}>
-      <IoSearchOutline />
+      <div className={styles.iconWrapper} onClick={onSubmitHandler}>
+        <IoSearchOutline />
+      </div>
       <input
         type="text"
         value={text}
