@@ -6,6 +6,7 @@ import {
   LinkedNodesView,
   LinkInfoView,
   NodeConnectionView,
+  NodeCreationView,
   NodeInfoView,
 } from "@/components/card/views";
 
@@ -53,7 +54,12 @@ export const Home: React.FC = () => {
               setCardViewState={setCardViewState}
             />
           );
-        return <NodeConnectionView {...linkedNodesData} />;
+        return (
+          <NodeConnectionView
+            {...linkedNodesData}
+            setCardViewState={setCardViewState}
+          />
+        );
       case CardViewState.LinkInfo:
         // TODO: Get /link/:id
         const allLinkData = links.results as LinkType[];
@@ -66,6 +72,8 @@ export const Home: React.FC = () => {
             setCardViewState={setCardViewState}
           />
         );
+      case CardViewState.NodeCreation:
+        return <NodeCreationView />;
     }
     return <div>Default</div>;
   }, [cardViewState, currentId]);

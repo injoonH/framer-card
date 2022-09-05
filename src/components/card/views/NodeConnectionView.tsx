@@ -2,6 +2,7 @@ import React from "react";
 import { IoAdd } from "react-icons/io5";
 
 import { LinkedNodeEntry, NodeEntry } from "@/components/card/entry";
+import { CardViewState } from "@/components/card/views";
 
 import { SearchBar } from "@/components/atom";
 import Button from "@/components/button";
@@ -11,12 +12,11 @@ import { LinkedNodesType } from "@/types";
 
 import styles from "./nodeConnectionView.module.scss";
 
-export const NodeConnectionView: React.FC<LinkedNodesType> = ({
-  id,
-  title,
-  imageSource,
-  linkedNodes,
-}) => {
+export const NodeConnectionView: React.FC<
+  LinkedNodesType & {
+    setCardViewState: React.Dispatch<React.SetStateAction<CardViewState>>;
+  }
+> = ({ id, title, imageSource, linkedNodes, setCardViewState }) => {
   const [searchText, setSearchText] = React.useState<string>("");
   const [selectedNodeId, setSelectedNodeId] = React.useState<number>();
 
@@ -42,9 +42,7 @@ export const NodeConnectionView: React.FC<LinkedNodesType> = ({
 
       <button
         className={styles.createButton}
-        onClick={() => {
-          // TODO: Navigate
-        }}
+        onClick={() => setCardViewState(CardViewState.NodeCreation)}
       >
         <IoAdd />
         <span>Create New Idea</span>

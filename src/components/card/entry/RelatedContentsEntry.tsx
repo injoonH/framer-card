@@ -1,6 +1,7 @@
 import React from "react";
 import {
   IoChevronForward,
+  IoCloseOutline,
   IoGlobeOutline,
   IoLogoGoogle,
   IoLogoInstagram,
@@ -17,12 +18,16 @@ export interface RelatedContentsEntryProps {
   type: "google" | "instagram" | "reddit" | "twitter" | "youtube" | "default";
   url: string;
   title: string;
+  isAnchor?: boolean;
+  onClickHandler?: () => void;
 }
 
 export const RelatedContentsEntry: React.FC<RelatedContentsEntryProps> = ({
   type,
   url,
   title,
+  isAnchor = true,
+  onClickHandler,
 }) => {
   const [icon, setIcon] = React.useState<JSX.Element>(<IoGlobeOutline />);
 
@@ -49,8 +54,8 @@ export const RelatedContentsEntry: React.FC<RelatedContentsEntryProps> = ({
     }
   }, [type]);
 
-  return (
-    <a className={styles.entry} href={url} target="_blank">
+  const core = (
+    <>
       <div className={styles.iconWrapper}>
         <RoundIcon.outlined icon={icon} />
       </div>
@@ -58,7 +63,18 @@ export const RelatedContentsEntry: React.FC<RelatedContentsEntryProps> = ({
         <span className={styles.url}>{url}</span>
         <span className={styles.title}>{title}</span>
       </div>
+    </>
+  );
+
+  return isAnchor ? (
+    <a className={styles.entry} href={url} target="_blank">
+      {core}
       <IoChevronForward />
     </a>
+  ) : (
+    <div className={styles.entry} onClick={onClickHandler}>
+      {core}
+      <IoCloseOutline />
+    </div>
   );
 };

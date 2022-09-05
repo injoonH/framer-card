@@ -1,0 +1,54 @@
+@use "src/styles/colors";
+@use "src/styles/fonts";
+
+.titleDescription {
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
+
+  font-size: 1.4rem;
+  font-weight: fonts.$fw-semibold;
+  text-align: center;
+  color: colors.$achromatic-70;
+}
+
+.titleInput {
+  border: none;
+  outline: none;
+  width: 100%;
+
+  font-size: 3rem;
+  font-weight: fonts.$fw-bold;
+  text-align: center;
+  color: colors.$primary;
+
+  &::placeholder {
+    color: colors.$primary;
+    opacity: 0.5;
+  }
+}
+
+.addRelatedContentButtonWrapper {
+  margin-bottom: 0.6em;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+
+  > input {
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    padding: 0.5em;
+
+    background-color: colors.$achromatic-15;
+
+    font-size: 1.6rem;
+
+    &::placeholder {
+      color: colors.$achromatic-70;
+      opacity: 50%;
+    }
+  }
+}
