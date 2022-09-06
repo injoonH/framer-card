@@ -1,16 +1,12 @@
 import React from "react";
 
 import { RelatedContentsFactory } from "@/components/card/elements";
-import {
-  RelatedContentsEntry,
-  RelatedContentsEntryProps,
-} from "@/components/card/entry";
+import { RelatedContentsEntryProps } from "@/components/card/entry";
 import { CardViewState } from "@/components/card/views";
 
 import { Divider, ImageInput, Textarea } from "@/components/atom";
 import Button from "@/components/button";
 import Container from "@/components/container";
-import { Modal } from "@/components/modal";
 import Text from "@/components/text";
 
 import { DestNodeType } from "@/types";
@@ -20,11 +16,13 @@ import styles from "./nodeCreationView.module.scss";
 interface NodeCreationViewProps {
   destNodeInfo: React.MutableRefObject<DestNodeType>;
   setCardViewState: React.Dispatch<React.SetStateAction<CardViewState>>;
+  preNavCallback: () => void;
 }
 
 export const NodeCreationView: React.FC<NodeCreationViewProps> = ({
   destNodeInfo,
   setCardViewState,
+  preNavCallback,
 }) => {
   const [title, setTitle] = React.useState<string>("");
   const [description, setDescription] = React.useState<string>("");
@@ -72,6 +70,7 @@ export const NodeCreationView: React.FC<NodeCreationViewProps> = ({
             imageFile,
             contents,
           };
+          preNavCallback();
           setCardViewState(CardViewState.LinkCreation);
         }}
       >

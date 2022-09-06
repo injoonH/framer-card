@@ -13,6 +13,7 @@ export const LinkedNodesView: React.FC<
   LinkedNodesType & {
     setCurrentId: React.Dispatch<React.SetStateAction<number>>;
     setCardViewState: React.Dispatch<React.SetStateAction<CardViewState>>;
+    preNavCallback: () => void;
   }
 > = ({
   id,
@@ -21,6 +22,7 @@ export const LinkedNodesView: React.FC<
   linkedNodes,
   setCurrentId,
   setCardViewState,
+  preNavCallback,
 }) => {
   return (
     <>
@@ -43,6 +45,7 @@ export const LinkedNodesView: React.FC<
             imageSource={entry.imageSource}
             linkedNodesCount={entry.linkedNodesCount}
             onClickListener={() => {
+              preNavCallback();
               setCurrentId(entry.id);
               setCardViewState(CardViewState.NodeInfo);
             }}

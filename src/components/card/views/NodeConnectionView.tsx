@@ -16,6 +16,7 @@ export const NodeConnectionView: React.FC<
   LinkedNodesType & {
     destNodeInfo: React.MutableRefObject<DestNodeType>;
     setCardViewState: React.Dispatch<React.SetStateAction<CardViewState>>;
+    preNavCallback: () => void;
   }
 > = ({
   id,
@@ -24,6 +25,7 @@ export const NodeConnectionView: React.FC<
   linkedNodes,
   destNodeInfo,
   setCardViewState,
+  preNavCallback,
 }) => {
   const [searchText, setSearchText] = React.useState<string>("");
   const [selectedNodeId, setSelectedNodeId] = React.useState<number>();
@@ -69,7 +71,10 @@ export const NodeConnectionView: React.FC<
 
       <button
         className={styles.createButton}
-        onClick={() => setCardViewState(CardViewState.NodeCreation)}
+        onClick={() => {
+          preNavCallback();
+          setCardViewState(CardViewState.NodeCreation);
+        }}
       >
         <IoAdd />
         <span>Create New Idea</span>
@@ -108,6 +113,7 @@ export const NodeConnectionView: React.FC<
       <Button.condition
         condition={selectedNodeId !== undefined}
         onClickHandler={() => {
+          preNavCallback();
           setCardViewState(CardViewState.LinkCreation);
         }}
       >

@@ -10,6 +10,7 @@ import styles from "@/components/card/card.module.scss";
 interface CardProps {
   isActive: boolean;
   deactivate: () => void;
+  goBack: () => void;
   children: React.ReactNode;
 }
 
@@ -21,7 +22,12 @@ interface Motion {
   dragConstraints: { top: number } | { left: number };
 }
 
-const Card: React.FC<CardProps> = ({ isActive, deactivate, children }) => {
+const Card: React.FC<CardProps> = ({
+  isActive,
+  deactivate,
+  goBack,
+  children,
+}) => {
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
   const [cardMotion, setCardMotion] = React.useState<Motion>();
   const [cardHeight, setCardHeight] = React.useState<string>("100%");
@@ -80,7 +86,7 @@ const Card: React.FC<CardProps> = ({ isActive, deactivate, children }) => {
       onDragEnd={onDragEnd}
     >
       <header className={styles.cardHeader}>
-        <IoArrowBack />
+        <IoArrowBack onClick={goBack} />
         <div />
         <IoClose onClick={deactivate} />
       </header>

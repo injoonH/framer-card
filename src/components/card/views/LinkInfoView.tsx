@@ -19,6 +19,7 @@ export const LinkInfoView: React.FC<
   LinkType & {
     setCurrentId: React.Dispatch<React.SetStateAction<number>>;
     setCardViewState: React.Dispatch<React.SetStateAction<CardViewState>>;
+    preNavCallback: () => void;
   }
 > = ({
   description,
@@ -30,6 +31,7 @@ export const LinkInfoView: React.FC<
   author,
   setCurrentId,
   setCardViewState,
+  preNavCallback,
 }) => {
   return (
     <>
@@ -37,6 +39,7 @@ export const LinkInfoView: React.FC<
         <NodeProfile
           {...src}
           navigateToNodeInfo={() => {
+            preNavCallback();
             setCurrentId(src.id);
             setCardViewState(CardViewState.NodeInfo);
           }}
@@ -44,6 +47,7 @@ export const LinkInfoView: React.FC<
         <NodeProfile
           {...dest}
           navigateToNodeInfo={() => {
+            preNavCallback();
             setCurrentId(dest.id);
             setCardViewState(CardViewState.NodeInfo);
           }}

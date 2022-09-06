@@ -21,6 +21,7 @@ interface LinkCreationViewProps extends NodeProfileType {
   destNodeInfo: React.MutableRefObject<DestNodeType>;
   setCurrentId: React.Dispatch<React.SetStateAction<number>>;
   setCardViewState: React.Dispatch<React.SetStateAction<CardViewState>>;
+  emptyNavHistory: () => void;
 }
 
 export const LinkCreationView: React.FC<LinkCreationViewProps> = ({
@@ -31,6 +32,7 @@ export const LinkCreationView: React.FC<LinkCreationViewProps> = ({
   destNodeInfo,
   setCurrentId,
   setCardViewState,
+  emptyNavHistory,
 }) => {
   const [description, setDescription] = React.useState<string>("");
   const [contents, setContents] = React.useState<RelatedContentsEntryProps[]>(
@@ -119,8 +121,15 @@ export const LinkCreationView: React.FC<LinkCreationViewProps> = ({
       <Button.condition
         condition={description.length > 0}
         onClickHandler={() => {
-          // TODO: Navigate to newly created LinkInfoView
-          // TODO: Reset navigation records
+          if (destNodeInfo.current.id === null) {
+            // TODO: POST /nodes
+          }
+
+          // TODO: POST /links
+
+          // setCurrentId();
+          setCardViewState(CardViewState.LinkInfo);
+          emptyNavHistory();
         }}
       >
         {description.length === 0 ? "Description Required" : "Create Link"}

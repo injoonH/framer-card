@@ -11,6 +11,8 @@ import {
   NodeInfoView,
 } from "@/components/card/views";
 
+import { useStack } from "@/hooks";
+
 import { AnimatedChildren } from "@/layouts";
 
 import { DestNodeType, LinkedNodesType, LinkType, NodeType } from "@/types";
@@ -34,6 +36,14 @@ export const Home: React.FC = () => {
     title: "",
   });
 
+  const [_, pushNavHistory, popNavHistory, emptyNavHistory] = useStack<{
+    id: number;
+    state: CardViewState;
+  }>();
+
+  const preNavCallback = () =>
+    pushNavHistory({ id: currentId, state: cardViewState });
+
   const getCardView = React.useCallback(() => {
     switch (cardViewState) {
       case CardViewState.LinkCreation:
@@ -51,11 +61,16 @@ export const Home: React.FC = () => {
               destNodeInfo={destNodeInfo}
               setCurrentId={setCurrentId}
               setCardViewState={setCardViewState}
+              emptyNavHistory={emptyNavHistory}
             />
           );
         }
         return (
-          <NodeInfoView {...nodeData} setCardViewState={setCardViewState} />
+          <NodeInfoView
+            {...nodeData}
+            setCardViewState={setCardViewState}
+            preNavCallback={preNavCallback}
+          />
         );
       case CardViewState.LinkedNodes:
       case CardViewState.NodeConnection:
@@ -71,6 +86,7 @@ export const Home: React.FC = () => {
               {...linkedNodesData}
               setCurrentId={setCurrentId}
               setCardViewState={setCardViewState}
+              preNavCallback={preNavCallback}
             />
           );
         return (
@@ -78,6 +94,7 @@ export const Home: React.FC = () => {
             {...linkedNodesData}
             destNodeInfo={destNodeInfo}
             setCardViewState={setCardViewState}
+            preNavCallback={preNavCallback}
           />
         );
       case CardViewState.LinkInfo:
@@ -90,6 +107,7 @@ export const Home: React.FC = () => {
             {...linkData}
             setCurrentId={setCurrentId}
             setCardViewState={setCardViewState}
+            preNavCallback={preNavCallback}
           />
         );
       case CardViewState.NodeCreation:
@@ -97,6 +115,7 @@ export const Home: React.FC = () => {
           <NodeCreationView
             destNodeInfo={destNodeInfo}
             setCardViewState={setCardViewState}
+            preNavCallback={preNavCallback}
           />
         );
     }
@@ -143,6 +162,13 @@ export const Home: React.FC = () => {
           deactivate={() => {
             setCardKey(uuidv4());
             setIsCardActive(false);
+            emptyNavHistory();
+          }}
+          goBack={() => {
+            const prevPage = popNavHistory();
+            if (prevPage === undefined) return;
+            setCurrentId(prevPage.id);
+            setCardViewState(prevPage.state);
           }}
         >
           {getCardView()}

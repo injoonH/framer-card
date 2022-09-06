@@ -1,4 +1,5 @@
 import React from "react";
+import { IoChevronForward } from "react-icons/io5";
 
 import { LinkCount } from "@/components/card/elements";
 import { MetadataEntry, RelatedContentsEntry } from "@/components/card/entry";
@@ -16,6 +17,7 @@ import styles from "./nodeInfoView.module.scss";
 export const NodeInfoView: React.FC<
   NodeType & {
     setCardViewState: React.Dispatch<React.SetStateAction<CardViewState>>;
+    preNavCallback: () => void;
   }
 > = ({
   id,
@@ -26,6 +28,7 @@ export const NodeInfoView: React.FC<
   linkedNodesCount,
   author,
   setCardViewState,
+  preNavCallback,
 }) => {
   return (
     <>
@@ -35,13 +38,15 @@ export const NodeInfoView: React.FC<
       <div className={styles.nodeId}>Idea {id}</div>
       <div className={styles.title}>{title}</div>
       <Container.center>
-        <div className={styles.linkCountWrapper}>
-          <LinkCount
-            count={linkedNodesCount}
-            onClickHandler={() => {
-              setCardViewState(CardViewState.LinkedNodes);
-            }}
-          />
+        <div
+          className={styles.linkCountWrapper}
+          onClick={() => {
+            preNavCallback();
+            setCardViewState(CardViewState.LinkedNodes);
+          }}
+        >
+          <LinkCount count={linkedNodesCount} />
+          <IoChevronForward />
         </div>
       </Container.center>
 
@@ -80,6 +85,7 @@ export const NodeInfoView: React.FC<
 
       <Button.rect
         onClickHandler={() => {
+          preNavCallback();
           setCardViewState(CardViewState.NodeConnection);
         }}
       >

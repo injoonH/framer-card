@@ -27,5 +27,17 @@
 }
 
 .linkCountWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2em;
+
+  cursor: pointer;
+
   font-size: 2rem;
+  color: colors.$achromatic-70;
+
+  &:hover * {
+    color: colors.$achromatic-80;
+  }
 }
