@@ -1,10 +1,11 @@
 import React from "react";
 
-import { AddRelatedContentButton } from "@/components/card/elements";
+import { RelatedContentsFactory } from "@/components/card/elements";
 import {
   RelatedContentsEntry,
   RelatedContentsEntryProps,
 } from "@/components/card/entry";
+import { CardViewState } from "@/components/card/views";
 
 import { Divider, ImageInput, Textarea } from "@/components/atom";
 import Button from "@/components/button";
@@ -12,23 +13,30 @@ import Container from "@/components/container";
 import { Modal } from "@/components/modal";
 import Text from "@/components/text";
 
+import { DestNodeType } from "@/types";
+
 import styles from "./nodeCreationView.module.scss";
 
-export const NodeCreationView: React.FC = () => {
+interface NodeCreationViewProps {
+  destNodeInfo: React.MutableRefObject<DestNodeType>;
+  setCardViewState: React.Dispatch<React.SetStateAction<CardViewState>>;
+}
+
+export const NodeCreationView: React.FC<NodeCreationViewProps> = ({
+  destNodeInfo,
+  setCardViewState,
+}) => {
   const [title, setTitle] = React.useState<string>("");
   const [description, setDescription] = React.useState<string>("");
+  const [imageFile, setImageFile] = React.useState<File>();
   const [contents, setContents] = React.useState<RelatedContentsEntryProps[]>(
     []
   );
 
-  const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
-  const [relTitle, setRelTitle] = React.useState<string>("");
-  const [relUrl, setRelUrl] = React.useState<string>("");
-
   return (
     <>
       <Container.center>
-        <ImageInput />
+        <ImageInput setImageFile={setImageFile} />
       </Container.center>
       <div className={styles.titleDescription}>Idea Name</div>
       <input
@@ -52,28 +60,19 @@ export const NodeCreationView: React.FC = () => {
       <Divider />
 
       <Text.subtitle>Related Contents</Text.subtitle>
-      <div className={styles.addRelatedContentButtonWrapper}>
-        <AddRelatedContentButton onClickHandler={() => setIsModalOpen(true)} />
-      </div>
-      <Container.stack>
-        {contents.map((entry, idx) => (
-          <RelatedContentsEntry
-            key={idx}
-            type={entry.type}
-            title={entry.title}
-            url={entry.url}
-            isAnchor={false}
-            onClickHandler={() => {
-              // TODO: Pop from contents
-            }}
-          />
-        ))}
-      </Container.stack>
+      <RelatedContentsFactory contents={contents} setContents={setContents} />
 
       <Button.condition
         condition={title.length > 0 && description.length > 0}
         onClickHandler={() => {
-          // TODO: Navigate to LinkCreationView
+          destNodeInfo.current = {
+            id: null,
+            title,
+            description,
+            imageFile,
+            contents,
+          };
+          setCardViewState(CardViewState.LinkCreation);
         }}
       >
         {title.length === 0
@@ -82,35 +81,6 @@ export const NodeCreationView: React.FC = () => {
           ? "Description Required"
           : "Create Idea"}
       </Button.condition>
-
-      <Modal
-        isOpen={isModalOpen}
-        handleClose={() => {
-          setIsModalOpen(false);
-          setRelTitle("");
-          setRelUrl("");
-        }}
-        callback={() => {
-          // TODO: Get the type of related content (e.g., youtube, instagram, etc.)
-          // POST /urlType
-          // Push to contents
-        }}
-      >
-        <div className={styles.modal}>
-          <input
-            type="text"
-            placeholder="Title"
-            value={relTitle}
-            onChange={(event) => setRelTitle(event.target.value)}
-          />
-          <input
-            type="url"
-            placeholder="URL"
-            value={relUrl}
-            onChange={(event) => setRelUrl(event.target.value)}
-          />
-        </div>
-      </Modal>
     </>
   );
 };

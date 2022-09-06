@@ -64,7 +64,7 @@ const ConditionButton: React.FC<{
         [condition ? styles.rect : styles.condition]: true,
       })}
       onClick={onClickHandler}
-      disabled={condition}
+      disabled={!condition}
     >
       {children}
     </button>

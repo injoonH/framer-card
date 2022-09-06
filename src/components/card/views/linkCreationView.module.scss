@@ -1,0 +1,96 @@
+@use "src/styles/colors";
+@use "src/styles/fonts";
+
+.destNodeContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: calc(1em + 0.5rem);
+
+  border-radius: 5px;
+  padding: 0.5rem;
+
+  background-color: colors.$achromatic-10;
+}
+
+.imgWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 5rem;
+}
+
+.defaultImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+
+  background-color: colors.$achromatic-20;
+
+  > svg {
+    width: 0.6em;
+    height: 0.6em;
+
+    fill: colors.$achromatic-80;
+  }
+}
+
+.detailsContainer {
+  overflow: hidden;
+
+  width: 100%;
+
+  > div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .nodeId {
+    font-size: 1.6rem;
+    color: colors.$achromatic-70;
+  }
+
+  .title {
+    font-size: 2rem;
+    font-weight: fonts.$fw-bold;
+  }
+}
+
+.decoratorContainer {
+  position: relative;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  height: 5rem;
+  padding-left: 1.8rem;
+
+  > div:first-child {
+    position: absolute;
+    left: calc(3rem - 0.5px);
+
+    border-left: 1px solid colors.$achromatic-40;
+    height: 100%;
+  }
+
+  > div {
+    z-index: 1;
+
+    font-size: 0.6rem;
+  }
+
+  > span {
+    margin-left: 1em;
+
+    font-size: 1.2rem;
+    font-weight: fonts.$fw-light;
+    color: colors.$achromatic-70;
+  }
+}

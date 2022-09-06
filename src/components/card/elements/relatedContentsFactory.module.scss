@@ -6,6 +6,7 @@
   justify-content: space-between;
   align-items: center;
 
+  margin-bottom: 0.6em;
   border: none;
   border-radius: 5px;
   width: 100%;
@@ -33,5 +34,27 @@
     font-size: 1.2rem;
     font-weight: fonts.$fw-semibold;
     text-align: left;
+  }
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+
+  > input {
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    padding: 0.5em;
+
+    background-color: colors.$achromatic-15;
+
+    font-size: 1.6rem;
+
+    &::placeholder {
+      color: colors.$achromatic-70;
+      opacity: 50%;
+    }
   }
 }

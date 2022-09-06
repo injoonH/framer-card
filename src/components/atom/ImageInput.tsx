@@ -5,7 +5,9 @@ import { RoundImg } from "@/components/atom/RoundImg";
 
 import styles from "./imageInput.module.scss";
 
-export const ImageInput: React.FC = () => {
+export const ImageInput: React.FC<{
+  setImageFile: React.Dispatch<React.SetStateAction<File | undefined>>;
+}> = ({ setImageFile }) => {
   const [blobUrl, setBlobUrl] = React.useState<string>();
 
   return (
@@ -18,6 +20,7 @@ export const ImageInput: React.FC = () => {
           if (event.target.files === null) return;
           const [imageFile] = event.target.files;
           setBlobUrl(URL.createObjectURL(imageFile));
+          setImageFile(imageFile);
         }}
       />
       {blobUrl ? (

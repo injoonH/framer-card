@@ -8,17 +8,34 @@ import { SearchBar } from "@/components/atom";
 import Button from "@/components/button";
 import Container from "@/components/container";
 
-import { LinkedNodesType } from "@/types";
+import { DestNodeType, LinkedNodesType } from "@/types";
 
 import styles from "./nodeConnectionView.module.scss";
 
 export const NodeConnectionView: React.FC<
   LinkedNodesType & {
+    destNodeInfo: React.MutableRefObject<DestNodeType>;
     setCardViewState: React.Dispatch<React.SetStateAction<CardViewState>>;
   }
-> = ({ id, title, imageSource, linkedNodes, setCardViewState }) => {
+> = ({
+  id,
+  title,
+  imageSource,
+  linkedNodes,
+  destNodeInfo,
+  setCardViewState,
+}) => {
   const [searchText, setSearchText] = React.useState<string>("");
   const [selectedNodeId, setSelectedNodeId] = React.useState<number>();
+  const [filteredInfoList, setFilteredInfoList] = React.useState<
+    {
+      id: number;
+      title: string;
+      description: string;
+      imageSource: string;
+      linkedNodesCount: number;
+    }[]
+  >(linkedNodes);
 
   return (
     <>
@@ -33,9 +50,19 @@ export const NodeConnectionView: React.FC<
         <SearchBar
           text={searchText}
           setText={setSearchText}
-          onSubmitHandler={() => {
-            // TODO: Search
-          }}
+          onSubmitHandler={() =>
+            setFilteredInfoList(
+              linkedNodes.filter(
+                (entry) =>
+                  entry.title
+                    .toLowerCase()
+                    .includes(searchText.toLowerCase()) ||
+                  entry.description
+                    .toLowerCase()
+                    .includes(searchText.toLowerCase())
+              )
+            )
+          }
           placeholder="Search Ideas"
         />
       </div>
@@ -49,18 +76,30 @@ export const NodeConnectionView: React.FC<
       </button>
 
       <Container.stack>
-        {linkedNodes.map((entry) => (
+        {filteredInfoList.map((entry) => (
           <LinkedNodeEntry
             key={entry.id}
             title={entry.title}
             description={entry.description}
             imageSource={entry.imageSource}
             linkedNodesCount={entry.linkedNodesCount}
-            onClickListener={() =>
-              setSelectedNodeId(
-                entry.id === selectedNodeId ? undefined : entry.id
-              )
-            }
+            onClickListener={() => {
+              if (entry.id === selectedNodeId) {
+                setSelectedNodeId(undefined);
+                destNodeInfo.current = {
+                  id: null,
+                  title: "",
+                };
+              } else {
+                setSelectedNodeId(entry.id);
+                destNodeInfo.current = {
+                  id: entry.id,
+                  title: entry.title,
+                  imageSource: entry.imageSource,
+                  linkedNodesCount: entry.linkedNodesCount,
+                };
+              }
+            }}
             isSelected={entry.id === selectedNodeId}
           />
         ))}
@@ -68,7 +107,9 @@ export const NodeConnectionView: React.FC<
 
       <Button.condition
         condition={selectedNodeId !== undefined}
-        onClickHandler={() => {}}
+        onClickHandler={() => {
+          setCardViewState(CardViewState.LinkCreation);
+        }}
       >
         {selectedNodeId ? "Connect an Idea" : "Select an Idea"}
       </Button.condition>

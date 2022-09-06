@@ -3,6 +3,7 @@ import React from "react";
 import Card from "@/components/card";
 import {
   CardViewState,
+  LinkCreationView,
   LinkedNodesView,
   LinkInfoView,
   NodeConnectionView,
@@ -12,7 +13,7 @@ import {
 
 import { AnimatedChildren } from "@/layouts";
 
-import { LinkedNodesType, LinkType, NodeType } from "@/types";
+import { DestNodeType, LinkedNodesType, LinkType, NodeType } from "@/types";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -28,13 +29,31 @@ export const Home: React.FC = () => {
   const [cardKey, setCardKey] = React.useState<string>(uuidv4());
   const [currentId, setCurrentId] = React.useState<number>(0);
 
+  const destNodeInfo = React.useRef<DestNodeType>({
+    id: null,
+    title: "",
+  });
+
   const getCardView = React.useCallback(() => {
     switch (cardViewState) {
+      case CardViewState.LinkCreation:
       case CardViewState.NodeInfo:
         // TODO: GET /node/:id
         const allNodeData = nodes.results as NodeType[];
         const nodeData = allNodeData.find((node) => node.id === currentId);
         if (nodeData === undefined) break;
+        if (cardViewState === CardViewState.LinkCreation) {
+          const { id, title, imageSource, linkedNodesCount } = nodeData;
+          const profileData = { id, title, imageSource, linkedNodesCount };
+          return (
+            <LinkCreationView
+              {...profileData}
+              destNodeInfo={destNodeInfo}
+              setCurrentId={setCurrentId}
+              setCardViewState={setCardViewState}
+            />
+          );
+        }
         return (
           <NodeInfoView {...nodeData} setCardViewState={setCardViewState} />
         );
@@ -57,6 +76,7 @@ export const Home: React.FC = () => {
         return (
           <NodeConnectionView
             {...linkedNodesData}
+            destNodeInfo={destNodeInfo}
             setCardViewState={setCardViewState}
           />
         );
@@ -73,13 +93,18 @@ export const Home: React.FC = () => {
           />
         );
       case CardViewState.NodeCreation:
-        return <NodeCreationView />;
+        return (
+          <NodeCreationView
+            destNodeInfo={destNodeInfo}
+            setCardViewState={setCardViewState}
+          />
+        );
     }
     return <div>Default</div>;
   }, [cardViewState, currentId]);
 
   const buttonStyle = {
-    margin: "1em",
+    margin: "0.6em",
     padding: "1em",
   };
 

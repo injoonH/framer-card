@@ -1,20 +1,14 @@
 import React from "react";
-import { IoGitCommitOutline } from "react-icons/io5";
 
 import { LinkCount } from "@/components/card/elements";
 
 import { RoundImg } from "@/components/atom";
 
+import { NodeProfileType } from "@/types";
+
 import styles from "./nodeEntry.module.scss";
 
-interface NodeEntryProps {
-  id: number;
-  title: string;
-  imageSource: string;
-  linkedNodesCount: number;
-}
-
-export const NodeEntry: React.FC<NodeEntryProps> = ({
+export const NodeEntry: React.FC<NodeProfileType> = ({
   id,
   title,
   imageSource,
