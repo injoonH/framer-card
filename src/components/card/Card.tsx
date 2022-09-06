@@ -68,13 +68,15 @@ const Card: React.FC<CardProps> = ({ isActive, deactivate, children }) => {
         [isMobile ? styles.cardBottom : styles.cardRight]: true,
         [styles.cardFull]: isFull,
       })}
-      style={{ height: cardHeight }}
+      style={{ height: isMobile ? cardHeight : undefined }}
       dragSnapToOrigin
       {...cardMotion}
       onAnimationComplete={() => {
-        if (!isFull) setCardHeight("40%");
+        if (isMobile && !isFull) setCardHeight("40%");
       }}
-      onDragStart={() => setCardHeight("100%")}
+      onDragStart={() => {
+        if (isMobile) setCardHeight("100%");
+      }}
       onDragEnd={onDragEnd}
     >
       <header className={styles.cardHeader}>
