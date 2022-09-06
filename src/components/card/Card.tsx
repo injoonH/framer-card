@@ -15,7 +15,7 @@ interface CardProps {
 
 interface Motion {
   initial: { x: string } | { y: string };
-  animate: { x: number } | { y: number };
+  animate: { x: number } | { y: number; top?: number };
   exit: { x: string } | { y: string };
   drag: "x" | "y";
   dragConstraints: { top: number } | { left: number };
@@ -24,13 +24,15 @@ interface Motion {
 const Card: React.FC<CardProps> = ({ isActive, deactivate, children }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
   const [cardMotion, setCardMotion] = React.useState<Motion>();
+  const [cardHeight, setCardHeight] = React.useState<string>("100%");
+  const [isFull, setIsFull] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     setCardMotion(
       isMobile
         ? {
             initial: { y: "calc(100% + 4em)" },
-            animate: { y: 0 },
+            animate: { y: 0, top: isFull ? 0 : undefined },
             exit: { y: "calc(100% + 4em)" },
             drag: "y",
             dragConstraints: { top: 0 },
@@ -43,14 +45,18 @@ const Card: React.FC<CardProps> = ({ isActive, deactivate, children }) => {
             dragConstraints: { left: 0 },
           }
     );
-  }, [isMobile]);
+  }, [isMobile, isFull]);
 
   const onDragEnd = (
     _: MouseEvent | TouchEvent | PointerEvent,
     info: PanInfo
   ): void => {
     const offset = isMobile ? info.offset.y : info.offset.x;
-    if (offset > 70) deactivate();
+    if (offset > 70) {
+      if (isFull) setIsFull(false);
+      else deactivate();
+    }
+    if (isMobile && offset < -70) setIsFull(true);
   };
 
   if (!isActive) return null;
@@ -60,13 +66,20 @@ const Card: React.FC<CardProps> = ({ isActive, deactivate, children }) => {
       className={classNames({
         [styles.card]: true,
         [isMobile ? styles.cardBottom : styles.cardRight]: true,
+        [styles.cardFull]: isFull,
       })}
-      onDragEnd={onDragEnd}
+      style={{ height: cardHeight }}
       dragSnapToOrigin
       {...cardMotion}
+      onAnimationComplete={() => {
+        if (!isFull) setCardHeight("40%");
+      }}
+      onDragStart={() => setCardHeight("100%")}
+      onDragEnd={onDragEnd}
     >
       <header className={styles.cardHeader}>
         <IoArrowBack />
+        <div />
         <IoClose onClick={deactivate} />
       </header>
       <main className={styles.cardMain}>{children}</main>

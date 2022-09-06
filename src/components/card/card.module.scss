@@ -32,12 +32,11 @@ $card-header-icon-size: 2.4rem;
 }
 
 .cardBottom {
-  bottom: 0;
+  top: 60%;
   left: 0;
   right: 0;
 
   border-radius: $card-border-radius $card-border-radius 0 0;
-  height: clamp(300px, 50%, 500px);
 }
 
 .cardBottom::after {
@@ -51,6 +50,10 @@ $card-header-icon-size: 2.4rem;
   height: 100%;
 
   background-color: inherit;
+}
+
+.cardFull {
+  border-radius: 0;
 }
 
 .cardHeader {
@@ -71,6 +74,14 @@ $card-header-icon-size: 2.4rem;
     &:hover {
       color: colors.$achromatic-40;
     }
+  }
+
+  > div {
+    border-radius: 2px;
+    width: 20%;
+    height: 3px;
+
+    background-color: colors.$achromatic-20;
   }
 }
 
