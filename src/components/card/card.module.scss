@@ -1,8 +1,6 @@
 @use "src/styles/colors";
 
 $card-margin: 2em;
-$card-shadow: #00000040 0 0.1em 0.1em, #00000040 0 0.2em 0.8em,
-  #ffffff1a 0 0 0 1px inset;
 $card-border-radius: 11px;
 $card-header-padding: 1em;
 $card-main-padding: 1.5em;
@@ -14,10 +12,6 @@ $card-header-icon-size: 2.4rem;
 
   display: flex;
   flex-direction: column;
-
-  overflow: hidden;
-
-  box-shadow: $card-shadow;
 
   background-color: colors.$achromatic-0;
 }
